@@ -40,7 +40,10 @@
 \modulolinenumbers[5]
 %\linenumbers
 
-
+\usepackage{ifthen}
+\newbox\vhbox
+\newboolean{DontShowAppendix}
+\setboolean{DontShowAppendix}{false}
 %% Use the option review to obtain double line spacing
 %% \documentclass[authoryear,preprint,review,12pt]{elsarticle}
 
@@ -173,7 +176,7 @@ This study illustrates the transient environmental and health benefits observed 
  KAN, JT, and SS are supported by NHMRC 2019/GNT1194959. JT is supported by ARC FT220100650. CM is supported by the NIHR GHRC on NCDs and Environmental Change (NIHR203247) using UK aid from the UK Government to support global health research. LG and RFH are supported by funding from the UKPRP and ESRC (grant refs MR/V049704/1 and ES/V016075/1.
 
 
-\fbox{\parbox{\textwidth}{
+%\fbox{\parbox{\textwidth}{
     \subsection*{\textcolor{OliveGreen}{Research in context}}
     \subsubsection*{Evidence before this study}
        Previous studies have highlighted reductions in transport and industrial-related air pollution and associated health risks for select locations during 2020, linked to reductions in city mobility during the COVID-19 pandemic. Studies have also observed subsequent resurgence in air pollution and road collision risk for select cities and locations in the post-pandemic phase. 
@@ -181,7 +184,7 @@ This study illustrates the transient environmental and health benefits observed 
        This study adds a global perspective by analysing changes in health risks associated with levels of air pollution during 2020 across 507 cities and linking that to previously established city design types. By including such a large sample of locations, it enables comparison between city types and demonstrates how differences in the initial reduction and then resurgence of air pollution and associated health risks over the course of 2020 were associated with urban design characteristics.
     \subsubsection*{Implications of all the available evidence}
     Our results indicate that city designs that enable adaptation to crises through rapid transition from public/active transport modes to private transport may ultimately endure worse public health outcomes across a syndemic of chronic disease, infectious disease, and road injury if these patterns of behaviour become entrenched. Cities that offered a  diversity of public, active, and private transport options and did not trade off public transport ridership for private transport, demonstrated greater resilience in the face of the public health crisis produced by the COVID-19 pandemic.
-}}
+%}}
 
 \section*{Key messages}
 \begin{itemize}
@@ -192,7 +195,7 @@ This study illustrates the transient environmental and health benefits observed 
 \end{itemize}
 
 
-
+\section*{Introduction}
 \subsection*{Dominant transportation modes drive city design and public health outcomes}
 City designs can arise from strict top-down regimes\cite{mundigo1977city} or organically via bottom-up processes\cite{batty2017thinking, dovey2023atlas}. While some city designs foster movement and patterns of interaction that reduce exposure to significant health risks including air pollution, injury, physical inactivity and concomitant chronic diseases, others facilitate increased health risks\cite{Wijnands2022, Stevenson2016,wang2023flood, stanley2022managing}. Given that approximately 56 percent of the world's 8 billion people live in cities -- with projections indicating this will rise to 68 percent by 2050\cite{WHO2023} -- understanding the role city design plays in mitigating adverse health outcomes is key to implementing strategies to reduce the global burden of disease. 
 
@@ -205,31 +208,18 @@ While roads and other transportation infrastructure are relatively static, hazar
 
 The COVID-19 pandemic led to 5.4 million deaths globally over 2020 and 2021 \cite{Taylor2022} and prompted a range of non-pharmaceutical public health responses from local, regional, and national governments\cite{Hunter2023LPH} designed to contain disease transmission through reducing opportunities for interpersonal contact. These policies, which often included movement restrictions such as `stay at home' orders, also produced marked declines in city mobility resulting in reductions in transport-related air pollution \cite{Forster2020,He2020,LeQuere2020,Venter2020}. Given the application of similar mobility restrictions internationally, it provided an opportunity to compare the impact of city design on the implementation of these measures as well as a comparison of citizens' adaptation to the public health crisis. The availability of high volume, high frequency, broad-based and standardised data sources (i.e., `big data') enables exploration of city designs and associated trends in health risks over time and at a global scale, dampening observed volatility at the individual country, regional or city level. A present limitation of this standardised data however, is the majority of the data at the level of the city are held in high income countries (HIC), while the majority of the world's urban population lives in low and middle income countries (LIC, MIC)\cite{Smit2021}.
 
-The objective of this paper is to describe how the design of cities influenced change in travel patterns, mode share and concomitant changes in air pollution and public health risk during the first year of the COVID-19 pandemic (i.e., 2020). Using existing evidence on dose-response relationships between air pollution and disease outcomes, we set out to estimate the changes in transport-related air pollution levels (PM$_{2.5}$ and NO$_{2}$) associated with transport use across 507 cities, worldwide, and how these changes in mobility and pollution, if sustained, could potentially translate into estimated changes in risk associated with all-cause mortality, cardiovascular disease, respiratory disease, asthma, and infectious disease. We identify how different city designs may afford and/or constrain their ability to adapt to and recover from the COVID-19 pandemic. We extend this analysis to identify which city designs may demonstrate resilience against immediate and long-term adverse health outcomes across chronic disease and road injury, and discuss the implications of our findings for future public health challenges (Figure \ref{fig:concept}).
+The objective of this paper is to describe how the design of cities influenced change in travel patterns, mode share and concomitant changes in air pollution and public health risk during the first year of the COVID-19 pandemic (i.e., 2020). Using existing evidence on dose-response relationships between air pollution and disease outcomes, we set out to estimate the changes in transport-related air pollution levels (PM$_{2.5}$ and NO$_{2}$) associated with transport use across 507 cities, worldwide, and how these changes in mobility and pollution, if sustained, could potentially translate into estimated changes in risk associated with all-cause mortality, cardiovascular disease, respiratory disease, asthma, and infectious disease. We identify how different city designs may afford and/or constrain their ability to adapt to and recover from the COVID-19 pandemic. We extend this analysis to identify which city designs may demonstrate resilience against immediate and long-term adverse health outcomes across chronic disease and road injury, and discuss the implications of our findings for future public health challenges (Appendix pg. \hl{2}, Figure \ref{fig:concept}).
 
-\begin{figure}
-\centering
-\includegraphics[trim={ 0 0 0 0 },clip,scale=0.35]{Images/Panel LPH.png}
-\caption{\bf Overview of the study's methodology, combining mobility and pollution data for 507 global cities during 2020 to demonstrate city design can enable or constrain public health measures leading to either better or worse disease and transportation injury risk.}
- \label{fig:concept}
-\end{figure}
 
-\section*{\textcolor{OliveGreen}{Global analysis of responses to a public health crisis}}
+\section*{Methods}
+\subsection*{Global analysis of responses to a public health crisis}
 
 Starting with 1692 global cities (all cities with populations exceeding 300,000 and had available spatial data\cite{UNDESA2019}), datasets were assembled and analysed to explore city designs and pollution over time. These datasets include the network structures of urban transportation systems, historic and predicted pollution levels, mobility indicators across 2020, measures of individual disease transmission in 2020, and measures of structural dimensions of each individual city's design.
 
 \subsection*{Characterisation of city design}
-The first stage of this research was to create a representation of cities that accurately captured features of city design related to city mobility and public health. Analysing urban design centred around urban road networks has previously been undertaken in a number of ways, such as generating metrics of the `three Ds'\cite{Ewing2010}, density, diversity, and design (later updated to also include destination accessibility and distance to transit). Barthelemy (2011)\cite{Barthelemy2011} uses graph networks to derive measures of betweenness centrality, closeness, and connectedness between nodes of the network graphs. Here, we utilise a graph neural network (GNN) (see Box \ref{box:gnn}) constructed utilising OpenStreetMap (OSM) road network data\cite{Boeing2017a} from a set of 1692 global cities above 300,000 population, previously identified in Thompson et al. (2020)\cite{Thompson2020}. Due to lack of available pollution data in many cities (limitation in data was typically from low income countries in the global south), the final set of cities was reduced to 507 (Figures \ref{fig:africa}-\ref{fig:southhamerica}). The graphs generated for the GNN consist of nodes (intersections) and edges (roads) to which we have attached annotations to the edges (including road types such as residential, secondary, or arterial, speed limits, length and shape of the roads, and additional characteristics such as one way or the presence of footpaths or bike lanes) and to the nodes (node locations in reference to other nodes and the number of and angles of intersecting roads). As a result, the GNN can capture well the topography of a city's transportation networks as well as broader characteristics such as compactness vs. sprawl or symmetry vs. irregularity.  
+The first stage of this research was to create a representation of cities that accurately captured features of city design related to city mobility and public health. Analysing urban design centred around urban road networks has previously been undertaken in a number of ways, such as generating metrics of the `three Ds'\cite{Ewing2010}, density, diversity, and design (later updated to also include destination accessibility and distance to transit). Barthelemy (2011)\cite{Barthelemy2011} uses graph networks to derive measures of betweenness centrality, closeness, and connectedness between nodes of the network graphs. Here, we utilise a graph neural network (GNN) (see Appendix pg. \hl{3}, Box \ref{box:gnn}) constructed utilising OpenStreetMap (OSM) road network data\cite{Boeing2017a} from a set of 1692 global cities above 300,000 population, previously identified in Thompson et al. (2020)\cite{Thompson2020}. Due to lack of available pollution data in many cities (limitation in data was typically from low income countries in the global south), the final set of cities was reduced to 507 (Appendix pg. \hl{9}, Figures \ref{fig:africa}-\ref{fig:southhamerica}). The graphs generated for the GNN consist of nodes (intersections) and edges (roads) to which we have attached annotations to the edges (including road types such as residential, secondary, or arterial, speed limits, length and shape of the roads, and additional characteristics such as one way or the presence of footpaths or bike lanes) and to the nodes (node locations in reference to other nodes and the number of and angles of intersecting roads). As a result, the GNN can capture well the topography of a city's transportation networks as well as broader characteristics such as compactness vs. sprawl or symmetry vs. irregularity.  
 
-% script is /mnt/New4tb/data/LancetPH/LPlH-Rev2/plot_Figure1.py
-\begin{figure}
-\centering
-\includegraphics[trim={0 0 0 0},clip,scale=0.4]{Images/ByCountry_map_Black.png}
-\caption{\bf Location of the 507 cities used in this study.}
- \label{fig:clusters}
-\end{figure}
-
-City-level air pollution data (see Box \ref{box:pollution}) was used to validate the representation learned by the neural network. For each city, the neural network could predict whether air pollution levels rose or fell compared to the previous year with an accuracy of 97\%. This result underscores the neural network's ability to not only capture the road network of the modelled cities, but also to approximate the relationship between the transport network and the behaviour of air pollutants within the city. Additional validation of the neural network comes from Figure \ref{fig:Dimensions}, which plots the t-SNE representation (see Box \ref{box:gnn}) against understood dimensions of urban design measured against city block size and block regularity (i.e., the extent to which city blocks form parallelograms), as well as percentage of road and transit networks observed in each city from prior studies\cite{Thompson2020,Nice2019b}. Combined with Figure \ref{fig:clusters} and Figure \ref{fig:tSNE}, Figure \ref{fig:Dimensions} demonstrates that the urban morphology for analysed cities follows gradual changes across dimensions. High-density, small-block size and cities with relatively regular (e.g., quadrilateral) blocks are depicted on the mid- to upper-left of Figure \ref{fig:tSNE} (e.g., in grid areas A2/A3 and B1/B2), whereas sparse, large-block cities with little public transit infrastructure as a proportion of the transport network cluster together in the bottom right through areas G7 to H6. The global city design types identified in Thompson et al. (2020)\cite{Thompson2020} for the 507 cities used in this study are shown in Figure \ref{fig:citytypes}.
+City-level air pollution data (see Appendix pg. \hl{4}, Box \ref{box:pollution}) was used to validate the representation learned by the neural network. For each city, the neural network could predict whether air pollution levels rose or fell compared to the previous year with an accuracy of 97\%. This result underscores the neural network's ability to not only capture the road network of the modelled cities, but also to approximate the relationship between the transport network and the behaviour of air pollutants within the city. Additional validation of the neural network comes from Figure \ref{fig:Dimensions}, which plots the t-SNE representation (see Appendix pg. \hl{3}, Box \ref{box:gnn}) against understood dimensions of urban design measured against city block size and block regularity (i.e., the extent to which city blocks form parallelograms), as well as percentage of road and transit networks observed in each city from prior studies\cite{Thompson2020,Nice2019b}. Combined with Appendix pg. \hl{3}, Figure \ref{fig:clusters} and Figure \ref{fig:tSNE}, Figure \ref{fig:Dimensions} demonstrates that the urban morphology for analysed cities follows gradual changes across dimensions. High-density, small-block size and cities with relatively regular (e.g., quadrilateral) blocks are depicted on the mid- to upper-left of Figure \ref{fig:tSNE} (e.g., in grid areas A2/A3 and B1/B2), whereas sparse, large-block cities with little public transit infrastructure as a proportion of the transport network cluster together in the bottom right through areas G7 to H6. The global city design types identified in Thompson et al. (2020)\cite{Thompson2020} for the 507 cities used in this study are shown in Appendix pg. \hl{7}, Figure \ref{fig:citytypes}.
 
 Figure \ref{fig:tSNE} also shows that cities from within countries and continents tend to cluster together. For example, Japanese cities tend to cluster tightly together across grid areas A3 and A4, while European cities cluster together in and around grid areas A2 to C4. Asian cities across China, India and Vietnam extend in a regular pattern from grid areas B5 through to H6 as their designs differed along dimensions of block size and road network density. Of note are also clusters of Australasian, South American and North American cities found in grid areas C1 to C3 and B1 to B3. Urban designs in these areas tended to demonstrate regular, medium-sized blocks with medium to low levels of public transit. Cities in these locations were typically of a `Chequerboard' (square blocks) or `Motor City' (large, oblong blocks) types, designed to facilitate the egress of motor vehicles.
 
@@ -261,38 +251,6 @@ Associations between air pollution at the city level and estimated health risk e
 \end{figure}
 
 
-\begin{figure}
-\fbox{\parbox{\textwidth}{
-Growing availability of spatial big data have led to increasing usage of graph neural networks (GNN) in urban studies, using urban street networks to explore the urban form, discover urban growth patterns and socioeconomic statuses, derive the functions of urban features in street view imagery, or to enable the fusion of multiple sources of information to uncover the cultural characteristics of neighbourhoods from street view imagery \citep{liureview2022,desabbatalearning2023,xuequantifying2022,zhangknowledge2023,silvausing2024}. GNNs work by forming high-dimensional hypotheses that can represent input data; in this case, road networks, public transit networks, and active transport networks (e.g., walking and cycling paths) derived from OSM data. In the context of understanding mobility patterns, the utilisation of OSM data offers significant advantages over sampled imagery data used in previous studies (e.g.\cite{Thompson2020,seneviratne2021self}) due to OSM data's high density and its capacity to represent features of an entire city, rather than relying upon sampled data from locations across cities. To conduct global studies, OSM has proven to be an essential source of data, especially in data poor regions of the world where it might be the only source of that information. Assessments have found that while OSM data might have lower levels of completeness, the accuracy is generally high \cite{Zhou2022c,Zhou2022d}. OSM data was gathered in March 2023, so might have some differences between the study period (2020). However, as road and transport networks do not change dramatically over short periods \cite{Taillanter2023} makes it less likely that major infrastructure changes took place during that period and the lag time ensures that volunteer-run updates of OSM would likely have caught up with recent infrastructure changes. Furthermore, in comparison to the use of imagery data, the analysed road networks of each city present a direct, rather than inferred, data source. The coverage of cities analysed are shown in Figure \ref{fig:clusters} and Figures \ref{fig:africa}-\ref{fig:southhamerica}.
-
-We trained a graph neural network using self-supervised learning; a method demonstrated to capture urban form comparably to supervised learning\cite{seneviratne2021self}. Importantly, this allows the graph neural network used here to represent the data without requiring a labelled output to the neural network, as used in a recent study\cite{Thompson2020}. Masked Auto-encoding (MAE) was used as the training objective of the graph neural network. This objective has demonstrated effective performance in neural networks across various data modalities such as graphs\cite{hou2022graphmae}, images\cite{he2022masked}, graphs represented as images\cite{seneviratne2022self} and text\cite{devlin2018bert}. MAE trains the neural network by `masking' part of the input data, then tasking the model with predicting the masked (unknown) portion. Here, we masked both road (edge) features--such as length, start and end locations of roads--as well as node features such as latitude and longitude. The model then attempted to predict surrounding OSM sections from the remainder of the available sample. 
-
-The results of this analysis were then converted to a t-SNE\cite{scikit-learn} graph which organised the average value of each city's OSM sample in a 2-dimensional plane where the distance between cities on the graph represented their similarities across urban characteristics (see Figure \ref{fig:tSNE}). t-distributed stochastic neighbour embedding (t-SNE) is a method to visualise higher-dimension data by reducing it to two or three dimensions.
-}}
-\captionsetup{labelformat=empty}
-\caption{Box \ref{box:gnn}: Graph neural network}\label{box:gnn}
-\end{figure}
-
-
-
-\begin{figure}
-\fbox{\parbox{\textwidth}{
-Starting with the list of the largest cities in the world, taken from the 2015 United Nations’ World Urbanization Prospects report\cite{UN2014}, Thompson et al. (2020)\cite{Thompson2020} classified 1692 cities into types based on urban design characteristics and the associations of these types to road transport injury. This study and Wijnands et al. (2022)\cite{Wijnands2022} also used this list as a starting point and collected data (OSM data (Box \ref{box:gnn}) and pollution data (below)), to maximise the coverage of as many of these cities as possible. 
-
-The pollution data used in this study was derived from data generated by Wijnands et al. (2022)\cite{Wijnands2022}. That study found remote-sensing data to be of insufficient resolution (often 10km) to detect pollution anomalies of NO$_{2}$, PM$_{2.5}$, PM$_{10}$, and O$_{3}$ during 2020. Instead, ground-based observations were collected from as many locations across approximately 900 cities, supplied by the environmental protection agencies for 132 countries.  Using city-level daily averages of hourly pollution observations from 2015-2019, combined with ERA5\cite{Hersbach2020} weather observations for this same period, individual pollutant and city specific XGBoost models were trained and validated as suitable to predict daily air pollution levels in each city. Cities with less than 365 training samples over 2015-2020 and less than 330 measurements in 2020 were not included in the set of 900 cities. Features selected for the model training include air temperature on day t and days t-3, 2, and 1, net solar radiation on day t and days t-3, 2, and 1, total precipitation on day t and sum of days t-3, 2, and 1, wind speed on day t, wind direction on day t, leaf area index on day t, and year as well as the daily pollutant levels. Excluded features included day of week and day of year, so that those variables could be examined in the later analysis. The resulting models could account for seasonal and long-term trends as well as daily conditions and anomalies can be attributed to mobility restrictions and how they contribute to pollution levels. Using 2020 weather observations, 2020 pollution levels in the absence of a pandemic (counterfactual business as usual) were predicted and anomalies calculated. 
-
-Utilising this dataset allowed cross-city comparisons of individual city-level ground-level observed 2020 pollution anomalies generated through a consistent methodology and based on a single source of observations at a global level. A sample size no larger than 385 cities is required to achieve a confidence level of 95\% and a margin of error of 5\% in the results. Of the 900 cities, we used the data from 507 cities that met the criteria of sufficiently complete datasets of both NO$_{2}$ and PM$_{2.5}$ (global coverage shown in Figure \ref{fig:clusters} and Figures \ref{fig:africa}-\ref{fig:southhamerica}). Some extreme outliers were removed from the relative health risk analysis, e.g. a few days of extreme PM$_{2.5}$ levels during wildfires on the west coast of the United States in September 2020. 
-
-Apple\cite{Apple2020} and Google\cite{Google2020} provided mobility indexes in 2020. Apple's index calculates differences in map requests for modes of walking, driving, or public transit over a January 2020 baseline provided as a ratio. Google generated an index using phone-tracking-based changes in mobility across several types of locations, including retail and recreation, grocery stores and pharmacies, parks, public transit stations, workplaces, and private residences. These daily indexes were linked to the 507 cities with available air pollution data with changes representing percentage differences in attendance from a 5-week pre-pandemic baseline from January 3rd to February 6th, 2020\cite{owidcoronavirus}.
-
-Google's COVID-19 Open Data repository\cite{Google2022} provides data for daily COVID-19 cases using a consistent set of region keys. Daily values were linked to the 507 cities when city case data was available, matching country-level to cities when city-level data was unavailable. This data was curated by Wahltinez et al. (2020) \citep{Wahltinez2020}, retrieved directly from the relevant authorities (e.g., departments of health within countries).
-
-}}
-\captionsetup{labelformat=empty}
-\caption{Box \ref{box:pollution}: Air pollution and city mobility changes during COVID-19}\label{box:pollution}
-\end{figure}
-
-
 
 
 \begin{figure}
@@ -302,24 +260,15 @@ Google's COVID-19 Open Data repository\cite{Google2022} provides data for daily 
  \label{fig:stages}
 \end{figure}
 
-\section*{\textcolor{OliveGreen}{Changes in mobility, air pollution, and health outcomes during the COVID observational period}}
-\subsection*{Pollution reductions and rebounds}
+\section*{Results}
+\subsection*{Changes in mobility, air pollution, and health outcomes during the COVID observational period}
+\subsubsection*{Pollution reductions and rebounds}
 
-% script is /home/unimelb.edu.au/knice/git/2024-05-LancetPHPaper2Revision/Rev2Analysis/LPlH-Rev2/PlotFigure7.R
-% new script: plot_pollution_as_tsne.R with data from plot_all_pollution.R
-\begin{figure}
-\centering
-\includegraphics[trim={0 0 0 0},clip,scale=0.4]{Images2/DrivingMinusTransit.png}
-\caption{\bf An overview of observed modal shift from public transit to private motor vehicles observed during 2020 for all analysed cities highlighting an increased reliance on private vehicle use over public transit during the course of the COVID-19 pandemic. Values \textgreater 0 indicate a proportional replacement of public transit trips to private vehicles for individual cities in comparison to pre-pandemic conditions.}  
- \label{fig:driv_trans}
-\end{figure}
-
-
-Figure \ref{fig:stages} shows average mobility (Panel 1), anomalies of NO$_{2}$ and PM$_{2.5}$ air pollution levels (Panel 2), and total reported COVID-19 cases (Panel 3) for all measured cities during 2020 across the `Pre-pandemic', `Entry', `Mid-Crisis', and `Recovery' phases of the COVID-19 pandemic. City mobility measures are calculated as seven day rolling average aggregations of Google and Apple mobility indexes (Google mobility workplaces and transit locations and Apple transit and driving map requests) across the 507 cities for which data was available across both city mobility and air pollution (see Box \ref{box:pollution}). Air pollution anomalies are calculated as percentage seven day rolling average differences over a January 1-10, 2020 baseline. COVID-19 cases are calculated as a 7-day rolling average of cases per 100,000 population from Google (2022)\cite{Google2022} (see Box \ref{box:pollution}).
+Figure \ref{fig:stages} shows average mobility (Panel 1), anomalies of NO$_{2}$ and PM$_{2.5}$ air pollution levels (Panel 2), and total reported COVID-19 cases (Panel 3) for all measured cities during 2020 across the `Pre-pandemic', `Entry', `Mid-Crisis', and `Recovery' phases of the COVID-19 pandemic. City mobility measures are calculated as seven day rolling average aggregations of Google and Apple mobility indexes (Google mobility workplaces and transit locations and Apple transit and driving map requests) across the 507 cities for which data was available across both city mobility and air pollution (see Appendix pg. \hl{4}, Box \ref{box:pollution}). Air pollution anomalies are calculated as percentage seven day rolling average differences over a January 1-10, 2020 baseline. COVID-19 cases are calculated as a 7-day rolling average of cases per 100,000 population from Google (2022)\cite{Google2022} (see Appendix pg. \hl{4}, Box \ref{box:pollution}).
 
 From Figure \ref{fig:stages}, the impact on global city mobility that resulted from the introduction of movement restrictions, including stay-at-home orders, implemented across global cities during the `Entry' phase\cite{hale2021global} of the pandemic can be observed. Although movement restrictions were designed as a public health measure to reduce person-to-person disease transmission, secondary effects were seen related to reductions in global road trauma \cite{ITFRS2023} and significant reductions in mean transport-related NO$_{2}$ and PM$_{2.5}$ levels\cite{zhang2023impact}. Average city mobility declined across cities, reaching a nadir at approximately 45 days post-pandemic onset. This period also coincided with a plateau in global COVID-19 infections (Panel 3) not least because of the public observance of mobility restrictions as well as other non-pharmaceutical interventions implemented up to and including this time\cite{hale2021global}. 
 
-The mean estimated reduction in global NO$_{2}$ and PM$_{2.5}$ levels across observed cities from the beginning of the `Entry' phase until the `Mid-crisis' period were 17.9ppb (3.72\%) and 16.89\si{\micro\gram}/m$^{3}$ (9.35\%), respectively. If maintained over the long term, the estimated NO$_{2}$ reductions could have a substantial effect on reducing health risks for both acute and chronic disease equating to an estimated overall reduction in all-cause mortality risk of 1.5\% (2.2\%-3.0\%), a reduction in cardiovascular mortality risk of 4.1\% (2.6\%-6.0\%), and a reduction in respiratory disease mortality risk of 1.9\% (0.8\%-3.0\%) \cite{Huang19Pollution}. Similarly, if the reductions in PM$_{2.5}$ levels attained in this same period were maintained over the long term, reductions in all-cause mortality of 18.9\% (13.2\%-25.0\%)\cite{Yu2020PM2.5}, asthma risk of 46.8\% (18.7\%-65.5\%) and ischaemic heart disease morbidity of 0.25\% (0.2\%-0.3\%)\cite{Xie257} could be achieved. These potential effects on relative health risks were continued into the `Mid-crisis' period, where reductions in both city mobility and exposure to consequent transport-related air pollution were greatest across regions outside Asia. Using identical means for calculating risk reduction in the Mid-crisis' phase, all-cause mortality estimates related to NO$_{2}$ were consistently around 1.3$\%$ (0.9\%-1.7\%) below baseline, remaining in this range through to the `Recovery' phase (day 250+). Exceptions to this trend were generally found in cities located in the Americas, where air pollution-related risk across a range of chronic diseases returned to levels approximating the pre-pandemic baseline or above (see Figure \ref{fig:risks}). These locations have also seen a relative increase in road trauma beyond pre-pandemic levels, which appears associated with uptake of private vehicles in favour of public transport over the same period \cite{ITFRS2023,saladie2023back,DAS20211}. Estimated changes in relative risks associated with air pollution reductions across continents and phases for all-cause mortality, T2 diabetes, asthma and ischaemic heart disease mortality and morbidity for the `Entry', `Mid' and `Recovery' phases of the pandemic are converted from these percentage reductions and presented in Figure \ref{fig:risks} and Table \ref{tab:risks}. Note, risk calculations for chronic conditions assume pollution reduction levels are sustained over the long-term.
+The mean estimated reduction in global NO$_{2}$ and PM$_{2.5}$ levels across observed cities from the beginning of the `Entry' phase until the `Mid-crisis' period were 17.9ppb (3.72\%) and 16.89\si{\micro\gram}/m$^{3}$ (9.35\%), respectively. If maintained over the long term, the estimated NO$_{2}$ reductions could have a substantial effect on reducing health risks for both acute and chronic disease equating to an estimated overall reduction in all-cause mortality risk of 1.5\% (2.2\%-3.0\%), a reduction in cardiovascular mortality risk of 4.1\% (2.6\%-6.0\%), and a reduction in respiratory disease mortality risk of 1.9\% (0.8\%-3.0\%) \cite{Huang19Pollution}. Similarly, if the reductions in PM$_{2.5}$ levels attained in this same period were maintained over the long term, reductions in all-cause mortality of 18.9\% (13.2\%-25.0\%)\cite{Yu2020PM2.5}, asthma risk of 46.8\% (18.7\%-65.5\%) and ischaemic heart disease morbidity of 0.25\% (0.2\%-0.3\%)\cite{Xie257} could be achieved. These potential effects on relative health risks were continued into the `Mid-crisis' period, where reductions in both city mobility and exposure to consequent transport-related air pollution were greatest across regions outside Asia. Using identical means for calculating risk reduction in the Mid-crisis' phase, all-cause mortality estimates related to NO$_{2}$ were consistently around 1.3$\%$ (0.9\%-1.7\%) below baseline, remaining in this range through to the `Recovery' phase (day 250+). Exceptions to this trend were generally found in cities located in the Americas, where air pollution-related risk across a range of chronic diseases returned to levels approximating the pre-pandemic baseline or above (see Figure \ref{fig:risks}). These locations have also seen a relative increase in road trauma beyond pre-pandemic levels, which appears associated with uptake of private vehicles in favour of public transport over the same period \cite{ITFRS2023,saladie2023back,DAS20211}. Estimated changes in relative risks associated with air pollution reductions across continents and phases for all-cause mortality, T2 diabetes, asthma and ischaemic heart disease mortality and morbidity for the `Entry', `Mid' and `Recovery' phases of the pandemic are converted from these percentage reductions and presented in Figure \ref{fig:risks} and Appendix pg. \hl{5}, Table \ref{tab:risks}. Note, risk calculations for chronic conditions assume pollution reduction levels are sustained over the long-term.
 
 % script is /home/unimelb.edu.au/knice/git/2022-07-NHMRC_LancetPollution/boxplot/risk_plot3.R (now risk_plot_20250207.R)
 \begin{figure}
@@ -349,7 +298,7 @@ g) PM$_{2.5}$ (Asthma). Numbers $>$1 indicate increased health risks.}
 
 \subsection*{Transitions in transport modes during the COVID-19 pandemic}
 
-Alongside private vehicle transport, public transit ridership also declined by up to 90\% in the pandemic's `Entry' phase\cite{TransitCovid_Gkiotsalitis}. However, as city mobility restrictions eased in response to declining rates of COVID-19 transmission and populations began re-engaging with workplaces and social settings, citizens were faced with new factors that influenced their transportation choices including the risk of infection through the use of mass transit\cite{BECKTransit}. Figure \ref{fig:driv_trans} shows how these concerns contributed to a global shift away from public transport toward private vehicle use with values \textgreater 0 indicating a proportional modal shift away from public transit and toward private vehicle use in comparison to pre-pandemic conditions. This trend across the vast majority of cities was most evident during July and August 2020, but continued until early 2021, with many cities later implementing incentive programs to boost public transit ridership \cite{dai2021improving}. Global trends are summarised in Table \ref{tab:driving}.
+Alongside private vehicle transport, public transit ridership also declined by up to 90\% in the pandemic's `Entry' phase\cite{TransitCovid_Gkiotsalitis}. However, as city mobility restrictions eased in response to declining rates of COVID-19 transmission and populations began re-engaging with workplaces and social settings, citizens were faced with new factors that influenced their transportation choices including the risk of infection through the use of mass transit\cite{BECKTransit}. Appendix pg. \hl{6}, Figure \ref{fig:driv_trans} shows how these concerns contributed to a global shift away from public transport toward private vehicle use with values \textgreater 0 indicating a proportional modal shift away from public transit and toward private vehicle use in comparison to pre-pandemic conditions. This trend across the vast majority of cities was most evident during July and August 2020, but continued until early 2021, with many cities later implementing incentive programs to boost public transit ridership \cite{dai2021improving}. Global trends are summarised in Table \ref{tab:driving}.
 
 \begin{table}
 \caption{Changes in private vehicle use across continents and phases in percentages over the baseline. Negative numbers indicate a reduction of private vehicle use.}
@@ -417,50 +366,28 @@ The characteristic design of cities designed to promote the egress of motor vehi
 
 For example, an archetypal city demonstrating a regular, car-based network is Los Angeles, USA. Figure \ref{fig:three_graphs_Driv_trans}a shows the relative change in mode share between public transit and private vehicles for Los Angeles from a pre-pandemic baseline during 2020 in addition to showing anomalies from expected levels of PM$_{2.5}$ pollution over the same period. Notable is that while observed patterns of city mobility for Los Angeles' residents largely returned to normal in the second half of 2020, public transit remained well below baseline. Importantly, the trade-off between public transit and private vehicle use during the `Recovery' phase was also associated with a peak in PM$_{2.5}$ pollution. While a proportion of this pollution peak on select days was likely attributable to active wildfires, this pattern of results was consistently observed across similarly organised cities in North America and other cities whose designs located them in grid areas C1 to C3 and B1 to B3 of Figure \ref{fig:tSNE} representing those with predominantly private car-based transport systems. In S\~ao Paulo, Brazil (Figure \ref{fig:three_graphs_Driv_trans}b), similar mobility shifts are seen. However, while Los Angeles' transit rates stagnated at low levels across the remainder of 2020, transit usage in S\~ao Paulo began recovery toward baseline levels, although at a much slower rate than the earlier transition to private vehicle use.
 
-For the average of both North and South American locations, the combination of increased air pollution levels, disease risk, and increased private vehicle transport also coincided with the highest reported per-capita COVID-19 cases, globally (see Figure \ref{fig:covidCases7Ave})\footnote{https://github.com/GoogleCloudPlatform/covid-19-open-data/blob/main/docs/table-epidemiology.md}. It is not possible to draw direct causal relationships between these data, except perhaps to the extent that infection rates increased from already comparatively high global rates - especially in North America - once levels of mobility began increasing again. This pattern was in contrast to some locations (e.g., in Asia and Oceania) that had maintained comparatively low levels of COVID-19 in the mid-pandemic phase. Of course, because these data relate to `reported' cases, they are also subject to some variation given differences in testing and reporting regimes between regions.
-
-\begin{figure}
-\centering
-
-% being replaced by 
-% /home/unimelb.edu.au/knice/git/2021-08-COVIDPollutionPaper/Analysis/plot_covid_cases_fig11.R
-% data from combinedData_Intep_COVIDCASES.csv by LancetCombineDatasetsCovidCases.java taken from COVID-19-open-data
-\includegraphics[trim={0 0 0 0},clip,scale=0.45]%{Images/Average_Covid_Cases_Plot.png}
-{Images/covid_cases_continents.png}
-%}
-\caption{\bf Mean reported COVID-19 cases per 100,000 population across continents in 2020 for the Early, Mid-Crisis, and Recovery pandemic phases with error bars representing standard deviations across countries within regions.}  
- \label{fig:covidCases7Ave}
-\end{figure}
+For the average of both North and South American locations, the combination of increased air pollution levels, disease risk, and increased private vehicle transport also coincided with the highest reported per-capita COVID-19 cases, globally (see Appendix pg. \hl{8}, Figure \ref{fig:covidCases7Ave})\footnote{https://github.com/GoogleCloudPlatform/covid-19-open-data/blob/main/docs/table-epidemiology.md}. It is not possible to draw direct causal relationships between these data, except perhaps to the extent that infection rates increased from already comparatively high global rates - especially in North America - once levels of mobility began increasing again. This pattern was in contrast to some locations (e.g., in Asia and Oceania) that had maintained comparatively low levels of COVID-19 in the mid-pandemic phase. Of course, because these data relate to `reported' cases, they are also subject to some variation given differences in testing and reporting regimes between regions.
 
 For example, Figure \ref{fig:three_graphs_Driv_trans}c demonstrates that the rebound in city mobility in the second half of 2020 in the city of Tokyo, Japan did not result in a sustained modal transfer between public transit and private vehicles. Similarly, neither did this rebound coincide with peaks in transport-related air pollution nor widespread COVID-19 infections. This pattern of results was observed across Japanese cities, which are peculiar on the world stage in that they combine very dense road networks and very small blocks with high levels of public transit alongside policies that restrict on-street vehicle parking\cite{clements2019socialising}. Japanese cities' combination of city design and public policy shifts responsibility for parking provision onto individual vehicle owners rather than to local government, tipping the scales of transport choice away from private means and disincentivising car ownership. Therefore, while car-centric city designs and associated policies in some countries afforded populations transport mode choice and a shift toward private vehicle use when concerns regarding infectious disease transmission on public transit were high, Japanese cities and their supporting policies constrained citizens' capacity to shift away from public transport quickly even if they wanted to, resulting in a relative return to normal in the pandemic's `Recovery' phase.
 
-
-\section*{\textcolor{OliveGreen}{The influence of city design and transport mode choice on health outcomes}}
-\subsection*{Which city types had greater resilience against the adverse health effects of the crises?}
+\section*{Discussion}
+\subsection*{The influence of city design and transport mode choice on health outcomes}
+\subsubsection*{Which city types had greater resilience against the adverse health effects of the crises?}
 
 The results presented here indicate that city designs afforded populations across the world different tools to adapt and deal with the threat posed by COVID-19 as the crisis unfolded, and their responses also had both beneficial and harmful consequences during progressive phases. If we consider resilience as the "ability of a system, community or society exposed to hazards to resist, absorb, accommodate to and recover from the effects of a hazard in a timely and efficient manner, including through the preservation and restoration of its essential basic structures and functions" \cite{unisdr2009terminology}, this led some city types to demonstrate greater defence against public health threats than others.
 
 First of all, there appears to have been a demonstrable reduction in air pollution and related disease risk (mostly in the long term, should the new levels of air pollution be maintained) within cities where mobility restrictions were enforced by governments seeking to reduce person-to-person interaction and therefore, infectious disease spread. Despite the threat posed by COVID-19 on an unvaccinated population at the time, these secondary benefits were realised most acutely in the `Entry' and `Mid-crisis' phases of the pandemic when city mobility was most greatly reduced. Further, while no globally consistent data sources on road trauma at the daily, city level are available, evidence suggests that this period also saw a considerable reduction in road trauma across the world in both raw numbers of deaths and injuries \cite{saladie2023back,ITFRS2022,ITFRS2023,GBDStudy}. As described below, however, this effect was short-lived.
 
 \subsection*{Risk reductions were short-term in most locations while others maintained greater resilience}
-Unfortunately, many of the early benefits accrued from reductions in air pollution were not sustained, even until the end of 2020. Further, with the desire to rebound to prior levels of economic activity and mobility, many cities designed for private, car-based transport and where private vehicles have been favoured over public or active transit options\cite{DAS20211}, also rebounded to levels of air pollution and associated chronic disease risk that were equal to, if not exceeding, pre-pandemic levels; some of the few public health benefits of the pandemic era were lost. Added to this are widely observed post-pandemic rebounds in global road trauma (see Figure \ref{fig:GBD}). For example, in its 2023 report, the International Traffic Safety Data and Analysis Group (IRTAD), which described 2020 and 2021 as `exceptional years' in terms of reductions in road trauma among its member nations, laments that fatalities in many countries have now returned beyond their pre-pandemic levels. In particular, it highlights that that countries including the United States (27\%), New Zealand (22\%), Israel (21\%) and Costa Rica (20\%) appear to be witnessing even higher rates of road trauma than were experienced a decade prior. This pattern contrasts with significant road fatality declines in countries such as Japan (-39\%), Lithuania (-60\%), Korea (-50\%), Poland (-47\%), Greece (-35\%), Belgium (-34.7\%), Slovenia (-34\%), and Austria (-30\%) \cite{ITFRS2022,ITFRS2023}. Differences in post-pandemic road trauma patterns observed between regions are consistent with what might be expected given the dominant city and transport types housed within each country and explored within this study.
-
-\begin{figure}
-\centering
-
-\includegraphics[trim={0 0 0 0},clip,scale=0.5]{Images/Recreated.png}
-%}
-\caption{\bf Changes in total road traffic fatalities among the 43 member countries contributing to the International Traffic Safety Data and Analysis Group (IRTAD) showing a post-pandemic (2020-2021) rebound (figure adapted from \cite{ITFRS2023}).}  
- \label{fig:GBD}
-\end{figure}
-
-
+Unfortunately, many of the early benefits accrued from reductions in air pollution were not sustained, even until the end of 2020. Further, with the desire to rebound to prior levels of economic activity and mobility, many cities designed for private, car-based transport and where private vehicles have been favoured over public or active transit options\cite{DAS20211}, also rebounded to levels of air pollution and associated chronic disease risk that were equal to, if not exceeding, pre-pandemic levels; some of the few public health benefits of the pandemic era were lost. Added to this are widely observed post-pandemic rebounds in global road trauma (see Appendix pg. \hl{8}, Figure \ref{fig:GBD}). For example, in its 2023 report, the International Traffic Safety Data and Analysis Group (IRTAD), which described 2020 and 2021 as `exceptional years' in terms of reductions in road trauma among its member nations, laments that fatalities in many countries have now returned beyond their pre-pandemic levels. In particular, it highlights that that countries including the United States (27\%), New Zealand (22\%), Israel (21\%) and Costa Rica (20\%) appear to be witnessing even higher rates of road trauma than were experienced a decade prior. This pattern contrasts with significant road fatality declines in countries such as Japan (-39\%), Lithuania (-60\%), Korea (-50\%), Poland (-47\%), Greece (-35\%), Belgium (-34.7\%), Slovenia (-34\%), and Austria (-30\%) \cite{ITFRS2022,ITFRS2023}. Differences in post-pandemic road trauma patterns observed between regions are consistent with what might be expected given the dominant city and transport types housed within each country and explored within this study.
 
 \subsection*{Optimal city types for health vary by crisis and stage of the crisis}
 
 The results above demonstrate that optimal city types for health are not static, but change over time given the dynamic nature of health crises and concerns. This should come as little surprise given the role of cities and shared urban infrastructure in historic public health challenges. However, the performance of cities and their role in producing or preventing disease has previously tended to be considered over a period of centuries, decades or multiple years. Here, we demonstrate that optimal designs for health can change amid crises that unfold over weeks and months.
 
 Beyond infrastructure and design, we also acknowledge that embedded transport `cultures' \cite{PATERSON_2000} can influence whether rapid changes to transport mode share `stick' or not. This is a direction for future research. For example, that so many locations around the world experienced substantial reductions in pollution, road trauma, and associated chronic disease health risks during 2020 and 2021 appears to have been insufficient incentive for more societies to seek a more permanent transition away from transport modes that contribute to such risks. In fact, in many locations, car culture has not only been resilient to change but has strengthened, especially where city design has facilitated it and even where strategy has attempted to prevent it or at least lock-in benefits of alternative, active and sustainable transport modes\cite{hunter_city_2024}. In this sense, it might be reasonable to consider some instances of resilience - i.e., \textit{`preservation and restoration of ... essential basic structures and functions'} - as counter-productive to progress on overall planetary and/or population health. This is pertinent when we consider that more than half of the world's greenhouse gas (GHG) emissions have arisen in the period following the United Nations Framework Convention for Climate Change in 1992\cite{bashmakov2022climate}, with road transport one of the most significant contributors. The societal challenge to subvert some elements of resilient city designs in efforts to transition to net zero by 2050\cite{lynskey2020moving} is considerable.
+
+Some limitations of our study should be noted. The graph neural network clustering is based on OSM data. Assessments have found that while OSM data might have lower levels of completeness, the accuracy is generally high \cite{Zhou2022c,Zhou2022d}. OSM data was gathered in March 2023, so might have some differences between the study period (2020). However, road and transport networks do not change dramatically over short periods \cite{Taillanter2023} making it unlikely that major infrastructure changes took place that would affect observed results in any material way. Furthermore, in comparison to the use of imagery or map data, a strength of this approach is that the analysed road networks of each city represented a direct, rather than inferred, data source. Utilising the Wijnands et al. (2022)\cite{Wijnands2022} city and pollution dataset allowed cross-city comparisons of individual city-level ground-level observed 2020 pollution anomalies generated through a consistent methodology and based on a single source of observations at a global level. A sample size no larger than 385 cities is required to achieve a confidence level of 95\% and a margin of error of 5\% in the results. Of the 900 cities available from that study, we used the data from 507 cities that met the criteria of sufficiently complete datasets of both NO$_{2}$ and PM$_{2.5}$ (global coverage shown in Appendix pg. \hl{3}, Figure \ref{fig:clusters} and Appendix pg. \hl{9}, Figures \ref{fig:africa}-\ref{fig:southhamerica}). Some extreme outliers were removed from the relative health risk analysis where they represented known external sources of pollution, (e.g. a few days of extreme PM$_{2.5}$ levels during wildfires on the west coast of the United States in September 2020). Finally, our health risk calculations for chronic conditions rely on epidemiological evidence that assumes pollution reduction levels are sustained.
 
 \subsection*{Conclusions}
 
@@ -488,8 +415,67 @@ We declare no competing interests.
 %\end{thebibliography}
 
 
-\section{Supplementary Material}
+\ifthenelse{\boolean{DontShowAppendix}}{
+\unvbox\vhbox
+}{
+\clearpage
+\section{Appendix}
 \beginsupplement
+
+\begin{figure}
+\centering
+\includegraphics[trim={ 0 0 0 0 },clip,scale=0.35]{Images/Panel LPH.png}
+\caption{\bf Overview of the study's methodology, combining mobility and pollution data for 507 global cities during 2020 to demonstrate city design can enable or constrain public health measures leading to either better or worse disease and transportation injury risk.}
+ \label{fig:concept}
+\end{figure}
+
+% script is /mnt/New4tb/data/LancetPH/LPlH-Rev2/plot_Figure1.py
+\begin{figure}
+\centering
+\includegraphics[trim={0 0 0 0},clip,scale=0.4]{Images/ByCountry_map_Black.png}
+\caption{\bf Location of the 507 cities used in this study.}
+ \label{fig:clusters}
+\end{figure}
+
+
+\begin{figure}
+\fbox{\parbox{\textwidth}{
+Growing availability of spatial big data have led to increasing usage of graph neural networks (GNN) in urban studies, using urban street networks to explore the urban form, discover urban growth patterns and socioeconomic statuses, derive the functions of urban features in street view imagery, or to enable the fusion of multiple sources of information to uncover the cultural characteristics of neighbourhoods from street view imagery \citep{liureview2022,desabbatalearning2023,xuequantifying2022,zhangknowledge2023,silvausing2024}. GNNs work by forming high-dimensional hypotheses that can represent input data; in this case, road networks, public transit networks, and active transport networks (e.g., walking and cycling paths) derived from OSM data. In the context of understanding mobility patterns, the utilisation of OSM data offers significant advantages over sampled imagery data used in previous studies (e.g.\cite{Thompson2020,seneviratne2021self}) due to OSM data's high density and its capacity to represent features of an entire city, rather than relying upon sampled data from locations across cities. To conduct global studies, OSM has proven to be an essential source of data, especially in data poor regions of the world where it might be the only source of that information. The coverage of cities analysed are shown in Figure \ref{fig:clusters} and Figures \ref{fig:africa}-\ref{fig:southhamerica}.
+
+We trained a graph neural network using self-supervised learning; a method demonstrated to capture urban form comparably to supervised learning\cite{seneviratne2021self}. Importantly, this allows the graph neural network used here to represent the data without requiring a labelled output to the neural network, as used in a recent study\cite{Thompson2020}. Masked Auto-encoding (MAE) was used as the training objective of the graph neural network. This objective has demonstrated effective performance in neural networks across various data modalities such as graphs\cite{hou2022graphmae}, images\cite{he2022masked}, graphs represented as images\cite{seneviratne2022self} and text\cite{devlin2018bert}. MAE trains the neural network by `masking' part of the input data, then tasking the model with predicting the masked (unknown) portion. Here, we masked both road (edge) features--such as length, start and end locations of roads--as well as node features such as latitude and longitude. The model then attempted to predict surrounding OSM sections from the remainder of the available sample. 
+
+The results of this analysis were then converted to a t-SNE\cite{scikit-learn} graph which organised the average value of each city's OSM sample in a 2-dimensional plane where the distance between cities on the graph represented their similarities across urban characteristics (see Figure \ref{fig:tSNE}). t-distributed stochastic neighbour embedding (t-SNE) is a method to visualise higher-dimension data by reducing it to two or three dimensions.
+}}
+\captionsetup{labelformat=empty}
+\caption{Box \ref{box:gnn}: Graph neural network}\label{box:gnn}
+\end{figure}
+
+
+
+\begin{figure}
+\fbox{\parbox{\textwidth}{
+Starting with the list of the largest cities in the world, taken from the 2015 United Nations’ World Urbanization Prospects report\cite{UN2014}, Thompson et al. (2020)\cite{Thompson2020} classified 1692 cities into types based on urban design characteristics and the associations of these types to road transport injury. This study and Wijnands et al. (2022)\cite{Wijnands2022} also used this list as a starting point and collected data (OSM data (Box \ref{box:gnn}) and pollution data (below)), to maximise the coverage of as many of these cities as possible. 
+
+The pollution data used in this study was derived from data generated by Wijnands et al. (2022)\cite{Wijnands2022}. That study found remote-sensing data to be of insufficient resolution (often 10km) to detect pollution anomalies of NO$_{2}$, PM$_{2.5}$, PM$_{10}$, and O$_{3}$ during 2020. Instead, ground-based observations were collected from as many locations across approximately 900 cities, supplied by the environmental protection agencies for 132 countries.  Using city-level daily averages of hourly pollution observations from 2015-2019, combined with ERA5\cite{Hersbach2020} weather observations for this same period, individual pollutant and city specific XGBoost models were trained and validated as suitable to predict daily air pollution levels in each city. Cities with less than 365 training samples over 2015-2020 and less than 330 measurements in 2020 were not included in the set of 900 cities. Features selected for the model training include air temperature on day t and days t-3, 2, and 1, net solar radiation on day t and days t-3, 2, and 1, total precipitation on day t and sum of days t-3, 2, and 1, wind speed on day t, wind direction on day t, leaf area index on day t, and year as well as the daily pollutant levels. Excluded features included day of week and day of year, so that those variables could be examined in the later analysis. The resulting models could account for seasonal and long-term trends as well as daily conditions and anomalies can be attributed to mobility restrictions and how they contribute to pollution levels. Using 2020 weather observations, 2020 pollution levels in the absence of a pandemic (counterfactual business as usual) were predicted and anomalies calculated. 
+
+Apple\cite{Apple2020} and Google\cite{Google2020} provided mobility indexes in 2020. Apple's index calculates differences in map requests for modes of walking, driving, or public transit over a January 2020 baseline provided as a ratio. Google generated an index using phone-tracking-based changes in mobility across several types of locations, including retail and recreation, grocery stores and pharmacies, parks, public transit stations, workplaces, and private residences. These daily indexes were linked to the 507 cities with available air pollution data with changes representing percentage differences in attendance from a 5-week pre-pandemic baseline from January 3rd to February 6th, 2020\cite{owidcoronavirus}.
+
+Google's COVID-19 Open Data repository\cite{Google2022} provides data for daily COVID-19 cases using a consistent set of region keys. Daily values were linked to the 507 cities when city case data was available, matching country-level to cities when city-level data was unavailable. This data was curated by Wahltinez et al. (2020) \citep{Wahltinez2020}, retrieved directly from the relevant authorities (e.g., departments of health within countries).
+
+}}
+\captionsetup{labelformat=empty}
+\caption{Box \ref{box:pollution}: Air pollution and city mobility changes during COVID-19}\label{box:pollution}
+\end{figure}
+
+% script is /home/unimelb.edu.au/knice/git/2024-05-LancetPHPaper2Revision/Rev2Analysis/LPlH-Rev2/PlotFigure7.R
+% new script: plot_pollution_as_tsne.R with data from plot_all_pollution.R
+\begin{figure}
+\centering
+\includegraphics[trim={0 0 0 0},clip,scale=0.4]{Images2/DrivingMinusTransit.png}
+\caption{\bf An overview of observed modal shift from public transit to private motor vehicles observed during 2020 for all analysed cities highlighting an increased reliance on private vehicle use over public transit during the course of the COVID-19 pandemic. Values \textgreater 0 indicate a proportional replacement of public transit trips to private vehicles for individual cities in comparison to pre-pandemic conditions.}  
+ \label{fig:driv_trans}
+\end{figure}
+
 
 \begin{table}
 \caption{Relative health risks (and 95\% confidence interval) associated with air pollution reductions across continents and phases. Numbers $>$1 indicate increased health risks.}
@@ -630,6 +616,29 @@ Overall & -9.35 : 0.997 (0.998 -- 0.997) & -2.89 : 0.999 (0.999 -- 0.999) & -4.0
  \label{fig:citytypes}
 \end{figure}
 
+
+
+
+\begin{figure}
+\centering
+% being replaced by 
+% /home/unimelb.edu.au/knice/git/2021-08-COVIDPollutionPaper/Analysis/plot_covid_cases_fig11.R
+% data from combinedData_Intep_COVIDCASES.csv by LancetCombineDatasetsCovidCases.java taken from COVID-19-open-data
+\includegraphics[trim={0 0 0 0},clip,scale=0.45]%{Images/Average_Covid_Cases_Plot.png}
+{Images/covid_cases_continents.png}
+%}
+\caption{\bf Mean reported COVID-19 cases per 100,000 population across continents in 2020 for the Early, Mid-Crisis, and Recovery pandemic phases with error bars representing standard deviations across countries within regions.}  
+ \label{fig:covidCases7Ave}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[trim={0 0 0 0},clip,scale=0.5]{Images/Recreated.png}
+%}
+\caption{\bf Changes in total road traffic fatalities among the 43 member countries contributing to the International Traffic Safety Data and Analysis Group (IRTAD) showing a post-pandemic (2020-2021) rebound (figure adapted from \cite{ITFRS2023}).}  
+ \label{fig:GBD}
+\end{figure}
+
 % script for the figures:
 % /home/unimelb.edu.au/knice/git/2022-07-NHMRC_LancetPollution/Article/plot_cities.R
 % new version  plot_cities_Rev2.R
@@ -675,6 +684,7 @@ Overall & -9.35 : 0.997 (0.998 -- 0.997) & -2.89 : 0.999 (0.999 -- 0.999) & -4.0
  \label{fig:southhamerica}
 \end{figure}
 
+} % end DontShowAppendix
 
 \end{document}
 \endinput
